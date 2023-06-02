@@ -1,0 +1,77 @@
+apiVersion: humanitec.io/v1alpha1
+kind: WorkloadTemplate
+metadata:
+  annotations:
+    app.humanitec.io/deployment: 1764f2eb2d611863
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-01
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: workloadtemplate-sample-app
+spec:
+  manifests:
+  - apiVersion: v1
+    data: {}
+    kind: ConfigMap
+    metadata:
+      labels:
+        app.kubernetes.io/instance: sample-app
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: sample-app
+        helm.sh/chart: default-module-1.16.2
+      name: sample-app-configmap-sample-app
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/instance: sample-app
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: sample-app
+        helm.sh/chart: default-module-1.16.2
+      name: sample-app
+    spec:
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: sample-app
+          app.kubernetes.io/name: sample-app
+      template:
+        metadata:
+          annotations:
+            checksum/config: c097a466f20863e88a48d024410366c81d41e41e238d5bf09cc51a01bf11a43e
+          labels:
+            app.kubernetes.io/instance: sample-app
+            app.kubernetes.io/name: sample-app
+        spec:
+          containers:
+          - envFrom:
+            - configMapRef:
+                name: sample-app-configmap-sample-app
+            image: registry.humanitec.io/public/sample-app:1.3.0
+            name: sample-app
+            resources:
+              limits:
+                cpu: "0.250"
+                memory: 256Mi
+              requests:
+                cpu: "0.025"
+                memory: 64Mi
+          imagePullSecrets: []
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app.kubernetes.io/instance: sample-app
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: sample-app
+        helm.sh/chart: default-module-1.16.2
+      name: sample-app
+    spec:
+      ports:
+      - name: port-default
+        port: 8080
+        protocol: TCP
+      selector:
+        app.kubernetes.io/instance: sample-app
+        app.kubernetes.io/name: sample-app
+      type: ClusterIP
