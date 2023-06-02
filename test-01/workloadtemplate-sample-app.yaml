@@ -2,7 +2,7 @@ apiVersion: humanitec.io/v1alpha1
 kind: WorkloadTemplate
 metadata:
   annotations:
-    app.humanitec.io/deployment: 1764f2eb2d611863
+    app.humanitec.io/deployment: 1764f2f772d0573a
   creationTimestamp: null
   labels:
     app.humanitec.io/app-id: test-01
