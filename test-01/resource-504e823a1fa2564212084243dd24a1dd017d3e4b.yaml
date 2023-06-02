@@ -3,7 +3,7 @@ kind: Resource
 metadata:
   annotations:
     app.humanitec.io/definition-id: default-humanitec-workload-res
-    app.humanitec.io/deployment: 1764f2f772d0573a
+    app.humanitec.io/deployment: 1764f3022d298c18
     app.humanitec.io/matching-criteria-id: db70c377f7134da2
   creationTimestamp: null
   labels:
@@ -34,7 +34,8 @@ spec:
               requests:
                 cpu: "0.025"
                 memory: 64Mi
-            variables: {}
+            variables:
+              HELLO: world
             volume_mounts: {}
   driverType: humanitec/template
   guresid: 504e823a1fa2564212084243dd24a1dd017d3e4b

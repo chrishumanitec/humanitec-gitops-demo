@@ -2,7 +2,7 @@ apiVersion: humanitec.io/v1alpha1
 kind: WorkloadTemplate
 metadata:
   annotations:
-    app.humanitec.io/deployment: 1764f2f772d0573a
+    app.humanitec.io/deployment: 1764f3022d298c18
   creationTimestamp: null
   labels:
     app.humanitec.io/app-id: test-01
@@ -12,7 +12,8 @@ metadata:
 spec:
   manifests:
   - apiVersion: v1
-    data: {}
+    data:
+      HELLO: world
     kind: ConfigMap
     metadata:
       labels:
@@ -38,7 +39,7 @@ spec:
       template:
         metadata:
           annotations:
-            checksum/config: c097a466f20863e88a48d024410366c81d41e41e238d5bf09cc51a01bf11a43e
+            checksum/config: 5b5f2fdee455b92a834fd271413a5789b80662e66c5a65782d6a65a9035d6b6d
           labels:
             app.kubernetes.io/instance: sample-app
             app.kubernetes.io/name: sample-app
