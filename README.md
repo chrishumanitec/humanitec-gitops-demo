@@ -1,1 +1,0 @@
-# Humanitec GitOps Demo

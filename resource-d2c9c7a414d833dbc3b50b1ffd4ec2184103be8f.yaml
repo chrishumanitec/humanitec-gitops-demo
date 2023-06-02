@@ -1,0 +1,33 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Resource
+metadata:
+  annotations:
+    app.humanitec.io/definition-id: default-humanitec-base-env
+    app.humanitec.io/deployment: 1764f0300cd06556
+    app.humanitec.io/matching-criteria-id: c72e691130b9c896
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-01
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: resource-d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
+spec:
+  configMapName: resource-configmap-d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
+  dependsOn: []
+  driver: builtin://template
+  driverInputs:
+    driver:
+      secrets: {}
+      values: {}
+    resource:
+      id: /orgs/gitops-demo/apps/test-01/envs/gitops
+  driverType: humanitec/template
+  guresid: d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
+  id: base-env
+  secretName: resource-secret-d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
+  secretStoreConfigRef:
+    name: gcp-secret-manager-store
+    namespace: ""
+  type: base-env
+  workloadPatchName: resource-patch-d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
+status: {}

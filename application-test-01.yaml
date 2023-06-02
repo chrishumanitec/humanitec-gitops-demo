@@ -1,0 +1,21 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    app.humanitec.io/deployment: 1764f0300cd06556
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-01
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: application-test-01
+spec:
+  workloads:
+  - condition:
+      success: deploy
+      when: deploy
+    dependsOnResources:
+    - resource-504e823a1fa2564212084243dd24a1dd017d3e4b
+    name: sample-app
+    templateName: workloadtemplate-sample-app
+status: {}
