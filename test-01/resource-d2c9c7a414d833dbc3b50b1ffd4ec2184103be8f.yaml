@@ -2,9 +2,9 @@ apiVersion: humanitec.io/v1alpha1
 kind: Resource
 metadata:
   annotations:
-    app.humanitec.io/definition-id: default-humanitec-base-env
-    app.humanitec.io/deployment: 1764f506d96cf0d1
-    app.humanitec.io/matching-criteria-id: c72e691130b9c896
+    app.humanitec.io/definition-id: 3s-base-env
+    app.humanitec.io/deployment: 1765b088dedea196
+    app.humanitec.io/matching-criteria-id: 5df0bda7ca391ed5
   creationTimestamp: null
   labels:
     app.humanitec.io/app-id: test-01
@@ -14,14 +14,72 @@ metadata:
 spec:
   configMapName: resource-configmap-d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
   dependsOn: []
-  driver: builtin://template
+  driver: https://dibberthuelsspencermckenzie.newapp.io/template
   driverInputs:
     driver:
       secrets: {}
-      values: {}
+      values:
+        templates:
+          files: |-
+            ${context.app.id}/${context.env.id}/example-base.yaml: |
+              # ███████╗████████╗ █████╗  ██████╗██╗  ██╗
+              # ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
+              # ███████╗   ██║   ███████║██║     █████╔╝
+              # ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
+              # ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
+              # ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+              #
+              cpe_stack_version: v0.3.0-pre-cfk
+              #
+              # You should never change these ones
+              #
+              application_name: cpe-10
+              environment_name: staging
+              stack_name: cpe-10-staging
+              stack_id: mnck
+              csp_name: google
+              monitoring:
+                business_department: CPE
+                environment: sandbox
+                sma_1st_level_group: CE-CPE
+                sma_2nd_level_group: CE-CPE
+                sma_3rd_level_group: CE-CPE
+                sma_service: CPE
+                disable_ticketing: true
+                on_duty: false
+                invoiced_team: CE-CPE
+              #dns_zone_delegation: cpe-10-staging-mnck.decathlon.io
+              #
+              #  ██████╗ ██╗████████╗██╗  ██╗██╗   ██╗██████╗
+              # ██╔════╝ ██║╚══██╔══╝██║  ██║██║   ██║██╔══██╗
+              # ██║  ███╗██║   ██║   ███████║██║   ██║██████╔╝
+              # ██║   ██║██║   ██║   ██╔══██║██║   ██║██╔══██╗
+              # ╚██████╔╝██║   ██║   ██║  ██║╚██████╔╝██████╔╝
+              #  ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝
+              #
+              github:
+                repositories:
+                  k8s-apps-01:
+                    github_repo: k8s-apps-cpe-10-staging
+                  k8s-infra-01:
+                    github_repo: k8s-infra-cpe-10-staging
+                  stack:
+                    github_repo: cpe-cpe-10-staging-stack
+              #
+              #  ██████╗  ██████╗██████╗
+              # ██╔════╝ ██╔════╝██╔══██╗
+              # ██║  ███╗██║     ██████╔╝
+              # ██║   ██║██║     ██╔═══╝
+              # ╚██████╔╝╚██████╗██║
+              #  ╚═════╝  ╚═════╝╚═╝
+              #
+              gcp:
+                project_id: sandbox-cpe-10-tlxu
+                default_region: europe-west4
+                buckets: !merge includes/bucket-*.yaml
     resource:
       id: /orgs/gitops-demo/apps/test-01/envs/gitops
-  driverType: humanitec/template
+  driverType: gitops-demo/template-filewriter
   guresid: d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f
   id: base-env
   secretName: resource-secret-d2c9c7a414d833dbc3b50b1ffd4ec2184103be8f

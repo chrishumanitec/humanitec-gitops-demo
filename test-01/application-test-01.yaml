@@ -2,7 +2,7 @@ apiVersion: humanitec.io/v1alpha1
 kind: Application
 metadata:
   annotations:
-    app.humanitec.io/deployment: 1764f506d96cf0d1
+    app.humanitec.io/deployment: 1765b088dedea196
   creationTimestamp: null
   labels:
     app.humanitec.io/app-id: test-01
@@ -16,6 +16,7 @@ spec:
       when: deploy
     dependsOnResources:
     - resource-504e823a1fa2564212084243dd24a1dd017d3e4b
+    - resource-be03ded52993d8a182eb3757f9571e8e1f808a9c
     name: sample-app
     templateName: workloadtemplate-sample-app
 status: {}
