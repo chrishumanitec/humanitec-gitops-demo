@@ -1,0 +1,56 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Resource
+metadata:
+  annotations:
+    app.humanitec.io/definition-id: default-humanitec-tls-cert
+    app.humanitec.io/deployment: 1765b0f824ca7b82
+    app.humanitec.io/matching-criteria-id: 7d9259f49d2751ca
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-01
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: resource-ee3254ff93d9933f96f1729fe09cd17d4364de5a
+spec:
+  configMapName: resource-configmap-ee3254ff93d9933f96f1729fe09cd17d4364de5a
+  dependsOn:
+  - resource-978a2d2cd9ce940facb18750d7b0886a2452a123
+  driver: builtin://template
+  driverInputs:
+    driver:
+      secrets:
+        templates:
+          outputs: orgs/humanitec/resources/defs/default-humanitec-tls-cert/driver/.templates.outputs
+      values:
+        templates:
+          init: |
+            tlsSecretName: {{ .id }}-tls
+            domain: "${resources.dns.outputs.host}"
+          manifests: |-
+            {{ if hasSuffix ".newapp.io" .init.domain }}
+            tls_secret:
+              location: namespace
+              data:
+                apiVersion: v1
+                kind: Secret
+                type: kubernetes.io/tls
+                metadata:
+                  name: {{ .init.tlsSecretName }}
+                  labels:
+                    domain: "d_.newapp.io"
+                data:
+                  tls.crt: {{ .outputs.secrets.tls_crt | b64enc }}
+                  tls.key: {{ .outputs.secrets.tls_key | b64enc }}
+            {{ end }}
+          outputs: 'tls_secret_name: {{ if hasSuffix ".newapp.io" .init.domain }}{{
+            .init.tlsSecretName }}{{else}}''''{{ end }}'
+  driverType: humanitec/template
+  guresid: ee3254ff93d9933f96f1729fe09cd17d4364de5a
+  id: modules.sample-app.externals.dns
+  secretName: resource-secret-ee3254ff93d9933f96f1729fe09cd17d4364de5a
+  secretStoreConfigRef:
+    name: gcp-secret-manager-store
+    namespace: ""
+  type: tls-cert
+  workloadPatchName: resource-patch-ee3254ff93d9933f96f1729fe09cd17d4364de5a
+status: {}

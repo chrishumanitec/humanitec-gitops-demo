@@ -1,0 +1,38 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Resource
+metadata:
+  annotations:
+    app.humanitec.io/definition-id: default-humanitec-dns
+    app.humanitec.io/deployment: 1765b0f824ca7b82
+    app.humanitec.io/matching-criteria-id: 5d52957634e8c6df
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-01
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: resource-978a2d2cd9ce940facb18750d7b0886a2452a123
+spec:
+  configMapName: resource-configmap-978a2d2cd9ce940facb18750d7b0886a2452a123
+  dependsOn: []
+  driver: https://drivers.humanitec.io/dns-aws-route53
+  driverInputs:
+    driver:
+      secrets:
+        account: orgs/humanitec/resources/dynamic/default-humanitec-dns/account
+        tls: tls
+      values:
+        domain: newapp.io
+        hosted_zone_id: Z1TT32KTKHMF93
+        tls_cn: '*.newapp.io'
+    resource:
+      ip_address: 0.0.0.0
+  driverType: humanitec/dns-aws-route53
+  guresid: 978a2d2cd9ce940facb18750d7b0886a2452a123
+  id: modules.sample-app.externals.dns
+  secretName: resource-secret-978a2d2cd9ce940facb18750d7b0886a2452a123
+  secretStoreConfigRef:
+    name: gcp-secret-manager-store
+    namespace: ""
+  type: dns
+  workloadPatchName: resource-patch-978a2d2cd9ce940facb18750d7b0886a2452a123
+status: {}

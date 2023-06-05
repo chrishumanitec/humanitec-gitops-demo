@@ -2,7 +2,7 @@ apiVersion: humanitec.io/v1alpha1
 kind: WorkloadTemplate
 metadata:
   annotations:
-    app.humanitec.io/deployment: 1765b088dedea196
+    app.humanitec.io/deployment: 1765b0f824ca7b82
   creationTimestamp: null
   labels:
     app.humanitec.io/app-id: test-01
@@ -70,7 +70,7 @@ spec:
       name: sample-app
     spec:
       ports:
-      - name: port-default
+      - name: port-0
         port: 8080
         protocol: TCP
       selector:
