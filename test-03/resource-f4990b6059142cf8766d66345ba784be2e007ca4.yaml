@@ -1,0 +1,44 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Resource
+metadata:
+  annotations:
+    app.humanitec.io/definition-id: 3s-s3
+    app.humanitec.io/deployment: 1765b72c6ba68c54
+    app.humanitec.io/matching-criteria-id: ba2665d36fc2bd53
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-03
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: resource-f4990b6059142cf8766d66345ba784be2e007ca4
+spec:
+  configMapName: resource-configmap-f4990b6059142cf8766d66345ba784be2e007ca4
+  dependsOn: []
+  driver: https://dibberthuelsspencermckenzie.newapp.io/template
+  driverInputs:
+    driver:
+      secrets: {}
+      values:
+        templates:
+          files: |-
+            ${context.app.id}/${context.env.id}/include/bucket-{{ .init.name }}.yaml: |
+              name: {{ .init.name }}-bucket
+              termination_protection: false
+              location: {{ .init.region }}
+          init: |
+            name: {{ regexReplaceAll ".*\\." "${context.res.id}" "" }}
+            region: europe-west1
+          outputs: |
+            bucket: {{ .init.name }}-bucket
+            region: {{ .init.region }}
+    resource: {}
+  driverType: gitops-demo/template-filewriter
+  guresid: f4990b6059142cf8766d66345ba784be2e007ca4
+  id: modules.test-03.externals.bucky
+  secretName: resource-secret-f4990b6059142cf8766d66345ba784be2e007ca4
+  secretStoreConfigRef:
+    name: gcp-secret-manager-store
+    namespace: ""
+  type: s3
+  workloadPatchName: resource-patch-f4990b6059142cf8766d66345ba784be2e007ca4
+status: {}

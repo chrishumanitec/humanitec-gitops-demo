@@ -3,7 +3,7 @@ kind: Resource
 metadata:
   annotations:
     app.humanitec.io/definition-id: default-humanitec-workload-res
-    app.humanitec.io/deployment: 1765b6965a3c72b9
+    app.humanitec.io/deployment: 1765b72c6ba68c54
     app.humanitec.io/matching-criteria-id: db70c377f7134da2
   creationTimestamp: null
   labels:
