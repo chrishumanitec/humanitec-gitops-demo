@@ -3,7 +3,7 @@ kind: Resource
 metadata:
   annotations:
     app.humanitec.io/definition-id: 3s-base-env
-    app.humanitec.io/deployment: 1765b0f824ca7b82
+    app.humanitec.io/deployment: 1765b1aa3fbde32d
     app.humanitec.io/matching-criteria-id: 5df0bda7ca391ed5
   creationTimestamp: null
   labels:
@@ -76,7 +76,29 @@ spec:
               gcp:
                 project_id: sandbox-cpe-10-tlxu
                 default_region: europe-west4
-                buckets: !merge includes/bucket-*.yaml
+                storage_buckets: !merge includes/bucket-*.yaml
+              #
+              #  █████╗ ██╗██╗   ██╗███████╗███╗   ██╗
+              # ██╔══██╗██║██║   ██║██╔════╝████╗  ██║
+              # ███████║██║██║   ██║█████╗  ██╔██╗ ██║
+              # ██╔══██║██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║
+              # ██║  ██║██║ ╚████╔╝ ███████╗██║ ╚████║
+              # ╚═╝  ╚═╝╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝
+              #
+              aiven:
+                projects:
+                  - project_id_fixed: XXX
+                    partner_index: 0
+                    termination_protection: false
+                    cost_center: XXXX
+                    poweroff_services:
+                      enabled: true
+                      stop_cron: 0 20 * * *
+                      start_cron: "0 0 1 1 *"
+                    integrations:
+                      dynatrace:
+                        enabled: true
+                    postgresql_instances: !merge includes/postgres-*.yaml
     resource:
       id: /orgs/gitops-demo/apps/test-01/envs/gitops
   driverType: gitops-demo/template-filewriter

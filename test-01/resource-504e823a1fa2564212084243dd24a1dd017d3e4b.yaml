@@ -3,7 +3,7 @@ kind: Resource
 metadata:
   annotations:
     app.humanitec.io/definition-id: default-humanitec-workload-res
-    app.humanitec.io/deployment: 1765b0f824ca7b82
+    app.humanitec.io/deployment: 1765b1aa3fbde32d
     app.humanitec.io/matching-criteria-id: db70c377f7134da2
   creationTimestamp: null
   labels:
@@ -39,12 +39,7 @@ spec:
               crazy: var
             volume_mounts: {}
         ingress:
-          rules:
-            externals.dns:
-              http:
-                /:
-                  port: 8080
-                  type: prefix
+          rules: {}
   driverType: humanitec/template
   guresid: 504e823a1fa2564212084243dd24a1dd017d3e4b
   id: modules.sample-app
