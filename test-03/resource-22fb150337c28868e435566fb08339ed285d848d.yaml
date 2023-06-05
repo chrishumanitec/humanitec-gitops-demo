@@ -1,0 +1,48 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Resource
+metadata:
+  annotations:
+    app.humanitec.io/definition-id: default-humanitec-workload-res
+    app.humanitec.io/deployment: 1765b6965a3c72b9
+    app.humanitec.io/matching-criteria-id: db70c377f7134da2
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-03
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: resource-22fb150337c28868e435566fb08339ed285d848d
+spec:
+  configMapName: resource-configmap-22fb150337c28868e435566fb08339ed285d848d
+  dependsOn: []
+  driver: builtin://template
+  driverInputs:
+    driver:
+      secrets: {}
+      values: {}
+    resource:
+      id: test-03
+      profile: humanitec/default-module
+      spec:
+        containers:
+          sample-app:
+            files: {}
+            image: registry.humanitec.io/public/sample-app:1.3.0
+            resources:
+              limits:
+                cpu: "0.250"
+                memory: 256Mi
+              requests:
+                cpu: "0.025"
+                memory: 64Mi
+            variables: {}
+            volume_mounts: {}
+  driverType: humanitec/template
+  guresid: 22fb150337c28868e435566fb08339ed285d848d
+  id: modules.test-03
+  secretName: resource-secret-22fb150337c28868e435566fb08339ed285d848d
+  secretStoreConfigRef:
+    name: gcp-secret-manager-store
+    namespace: ""
+  type: workload
+  workloadPatchName: resource-patch-22fb150337c28868e435566fb08339ed285d848d
+status: {}

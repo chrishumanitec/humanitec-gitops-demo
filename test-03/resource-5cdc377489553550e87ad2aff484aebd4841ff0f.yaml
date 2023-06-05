@@ -1,0 +1,113 @@
+apiVersion: humanitec.io/v1alpha1
+kind: Resource
+metadata:
+  annotations:
+    app.humanitec.io/definition-id: 3s-base-env
+    app.humanitec.io/deployment: 1765b6965a3c72b9
+    app.humanitec.io/matching-criteria-id: 5df0bda7ca391ed5
+  creationTimestamp: null
+  labels:
+    app.humanitec.io/app-id: test-03
+    app.humanitec.io/env-id: gitops
+    app.humanitec.io/org-id: gitops-demo
+  name: resource-5cdc377489553550e87ad2aff484aebd4841ff0f
+spec:
+  configMapName: resource-configmap-5cdc377489553550e87ad2aff484aebd4841ff0f
+  dependsOn: []
+  driver: https://dibberthuelsspencermckenzie.newapp.io/template
+  driverInputs:
+    driver:
+      secrets: {}
+      values:
+        templates:
+          files: |-
+            ${context.app.id}/${context.env.id}/example-base.yaml: |
+              # ███████╗████████╗ █████╗  ██████╗██╗  ██╗
+              # ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
+              # ███████╗   ██║   ███████║██║     █████╔╝
+              # ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
+              # ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
+              # ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+              #
+              cpe_stack_version: v0.3.0-pre-cfk
+              #
+              # You should never change these ones
+              #
+              application_name: cpe-10
+              environment_name: staging
+              stack_name: cpe-10-staging
+              stack_id: mnck
+              csp_name: google
+              monitoring:
+                business_department: CPE
+                environment: sandbox
+                sma_1st_level_group: CE-CPE
+                sma_2nd_level_group: CE-CPE
+                sma_3rd_level_group: CE-CPE
+                sma_service: CPE
+                disable_ticketing: true
+                on_duty: false
+                invoiced_team: CE-CPE
+              #dns_zone_delegation: cpe-10-staging-mnck.decathlon.io
+              #
+              #  ██████╗ ██╗████████╗██╗  ██╗██╗   ██╗██████╗
+              # ██╔════╝ ██║╚══██╔══╝██║  ██║██║   ██║██╔══██╗
+              # ██║  ███╗██║   ██║   ███████║██║   ██║██████╔╝
+              # ██║   ██║██║   ██║   ██╔══██║██║   ██║██╔══██╗
+              # ╚██████╔╝██║   ██║   ██║  ██║╚██████╔╝██████╔╝
+              #  ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝
+              #
+              github:
+                repositories:
+                  k8s-apps-01:
+                    github_repo: k8s-apps-cpe-10-staging
+                  k8s-infra-01:
+                    github_repo: k8s-infra-cpe-10-staging
+                  stack:
+                    github_repo: cpe-cpe-10-staging-stack
+              #
+              #  ██████╗  ██████╗██████╗
+              # ██╔════╝ ██╔════╝██╔══██╗
+              # ██║  ███╗██║     ██████╔╝
+              # ██║   ██║██║     ██╔═══╝
+              # ╚██████╔╝╚██████╗██║
+              #  ╚═════╝  ╚═════╝╚═╝
+              #
+              gcp:
+                project_id: sandbox-cpe-10-tlxu
+                default_region: europe-west4
+                storage_buckets: !merge includes/bucket-*.yaml
+              #
+              #  █████╗ ██╗██╗   ██╗███████╗███╗   ██╗
+              # ██╔══██╗██║██║   ██║██╔════╝████╗  ██║
+              # ███████║██║██║   ██║█████╗  ██╔██╗ ██║
+              # ██╔══██║██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║
+              # ██║  ██║██║ ╚████╔╝ ███████╗██║ ╚████║
+              # ╚═╝  ╚═╝╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝
+              #
+              aiven:
+                projects:
+                  - project_id_fixed: XXX
+                    partner_index: 0
+                    termination_protection: false
+                    cost_center: XXXX
+                    poweroff_services:
+                      enabled: true
+                      stop_cron: 0 20 * * *
+                      start_cron: "0 0 1 1 *"
+                    integrations:
+                      dynatrace:
+                        enabled: true
+                    postgresql_instances: !merge includes/postgres-*.yaml
+    resource:
+      id: /orgs/gitops-demo/apps/test-03/envs/gitops
+  driverType: gitops-demo/template-filewriter
+  guresid: 5cdc377489553550e87ad2aff484aebd4841ff0f
+  id: base-env
+  secretName: resource-secret-5cdc377489553550e87ad2aff484aebd4841ff0f
+  secretStoreConfigRef:
+    name: gcp-secret-manager-store
+    namespace: ""
+  type: base-env
+  workloadPatchName: resource-patch-5cdc377489553550e87ad2aff484aebd4841ff0f
+status: {}
