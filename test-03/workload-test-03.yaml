@@ -1,15 +1,18 @@
 apiVersion: humanitec.io/v1alpha1
-kind: WorkloadTemplate
+kind: Workload
 metadata:
   annotations:
-    app.humanitec.io/deployment: 1765b72c6ba68c54
+    app.humanitec.io/deployment: 1767e50df7b1a57e
   creationTimestamp: null
   labels:
     app.humanitec.io/app-id: test-03
     app.humanitec.io/env-id: gitops
     app.humanitec.io/org-id: gitops-demo
-  name: workloadtemplate-test-03
+  name: test-03
 spec:
+  dependsOnResources:
+  - resource-f4990b6059142cf8766d66345ba784be2e007ca4
+  - resource-22fb150337c28868e435566fb08339ed285d848d
   manifests:
   - apiVersion: v1
     data: {}
@@ -75,3 +78,4 @@ spec:
         app.kubernetes.io/instance: test-03
         app.kubernetes.io/name: test-03
       type: ClusterIP
+status: {}
